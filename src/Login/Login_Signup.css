@@ -1,0 +1,111 @@
+/* Tailwind base styles */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.container-signup {
+    background-color: rgba(0, 0, 0, 0.508);
+    backdrop-filter: blur(5px);
+    border-radius: 10px;
+    width: 600px;
+    max-width: 100%; /* Adjust for smaller screens */
+    height: 510px;
+    color: rgb(255, 255, 255);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* Center contents vertically */
+    margin: auto;
+    margin-top: 0px;
+    padding: 20px;
+}
+
+.header {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.Signup {
+    font-size: 25px;
+    color: rgb(140, 73, 73);
+    font-weight: 700;
+}
+
+.underline-login {
+    width: 61px;
+    height: 6px;
+    background-color: rgb(140, 73, 73);
+    border-radius: 9px;
+}
+
+.inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    align-items: center;
+    width: 100%;
+}
+
+.input {
+    display: flex;
+    align-items: center;
+    background: rgba(136, 43, 43, 0.623);
+    backdrop-filter: blur(10px);
+    width: 100%;
+    max-width: 450px;
+    height: 50px;
+    border-radius: 25px;
+    padding: 0 15px;
+}
+
+.input img {
+    margin-right: 15px;
+    height: 20px;
+}
+
+.input input {
+    flex: 1;
+    background-color: transparent;
+    font-size: 16px;
+    outline: none;
+    border: none;
+    color: aliceblue;
+}
+
+.footer {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.Submit {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 40px;
+    border-radius: 40px;
+    font-size: 18px;
+    font-weight: 500;
+    cursor: pointer;
+    background-color: rgba(140, 73, 73, 0.834);
+}
+
+.Submit:hover {
+    background-color: rgb(140, 73, 73);
+}
+
+.fp-footer {
+    font-size: 18px;
+    color: rgb(140, 73, 73);
+    margin-top: 15px;
+}
+
+.fp-footer span:hover {
+    color: rgb(128, 181, 109);
+    cursor: pointer;
+}
