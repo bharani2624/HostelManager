@@ -9,6 +9,7 @@ import Pearl from './assets/Pearl/Pearl';
 import Coral from './assets/Coral/Coral';
 import Ruby from './assets/Ruby/Ruby';
 import Diamond from './assets/Diamond/Diamond';
+import Issues from './assets/Issues/Issues';
 function App() {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -56,6 +57,12 @@ function App() {
             <>
           <SideBar isOpen={isOpen} toggle={toggle} />
           <Diamond isOpen={isOpen} />
+            </>
+        } />
+        <Route path='/Issues' element={
+            <>
+          <SideBar isOpen={isOpen} toggle={toggle} />
+          <Issues isOpen={isOpen} />
             </>
         } />
 
