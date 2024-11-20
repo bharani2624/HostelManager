@@ -34,9 +34,9 @@ const Ruby = ({ isOpen }) => {
                                 <th className="border-b border-gray-400 px-4 py-2">Hostel</th>
                                 <th className="border-b border-gray-400 px-4 py-2">Room Number</th>
                                 <th className="border-b border-gray-400 px-4 py-2">Availability</th>
-                                <th className="border-b border-gray-400 px-4 py-2">Room Number</th>
-                                <th className="border-b border-gray-400 px-4 py-2">Student 1</th>
-                                <th className="border-b border-gray-400 px-4 py-2">Student 2</th>
+                                <th className="border-b border-gray-400 px-4 py-2">Room</th>
+                                <th className="border-b border-gray-400 px-4 py-2">Student Email 1</th>
+                                <th className="border-b border-gray-400 px-4 py-2">Student Email 2</th>
                                 <th className="border-b border-gray-400 px-4 py-2">Student 3</th>
                                 <th className="border-b border-gray-400 px-4 py-2">Student 4</th>
                             </tr>

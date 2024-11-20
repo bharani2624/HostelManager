@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { database } from "../Dashboard/firebaseConfig"; // Adjust the path as necessary
-import { ref, onValue, update } from "firebase/database";
+import { database } from "../Dashboard/firebaseConfig";
+import { ref, onValue, update, remove } from "firebase/database";
 
 const Issues = ({ isOpen }) => {
     const [issuesData, setIssuesData] = useState([]);
@@ -28,14 +28,29 @@ const Issues = ({ isOpen }) => {
     }, []);
 
     const handleStatusChange = (category, issueId, currentStatus) => {
+        // Prevent modification if already resolved
+        if (currentStatus) return;
+
         const issueRef = ref(database, `Issues/${category}/${issueId}`);
         update(issueRef, {
-            status: !currentStatus
-        }).then(() => {
-            console.log("Issue status updated successfully.");
-        }).catch((error) => {
-            console.error("Error updating status:", error);
-        });
+            status: true 
+        })
+            .then(() => {
+                console.log("Issue marked as resolved successfully.");
+                // Schedule deletion after 2000 seconds
+                setTimeout(() => {
+                    remove(issueRef)
+                        .then(() => {
+                            console.log("Issue deleted successfully.");
+                        })
+                        .catch((error) => {
+                            console.error("Error deleting issue:", error);
+                        });
+                }, 2000 * 1000); // 2000 seconds
+            })
+            .catch((error) => {
+                console.error("Error updating status:", error);
+            });
     };
 
     return (
@@ -59,15 +74,38 @@ const Issues = ({ isOpen }) => {
                                 issuesData.map((issue, index) => (
                                     <tr key={index}>
                                         <td className="border-t border-gray-200 px-4 py-2">{issue.category}</td>
-                                        <td className="border-t border-gray-200 px-4 py-2">{issue.issue || issue.type}</td>
-                                        <td className="border-t border-gray-200 px-4 py-2">{issue.name}</td>
-                                        <td className="border-t border-gray-200 px-4 py-2">{issue.rollNo}</td>
-                                        <td className="border-t border-gray-200 px-4 py-2">{issue.status ? 'Resolved' : 'Unresolved'}</td>
+                                        <td
+                                            className={`border-t border-gray-200 px-4 py-2 ${
+                                                issue.status ? "line-through text-gray-500" : ""
+                                            }`}
+                                        >
+                                            {issue.issue || issue.type}
+                                        </td>
+                                        <td
+                                            className={`border-t border-gray-200 px-4 py-2 ${
+                                                issue.status ? "line-through text-gray-500" : ""
+                                            }`}
+                                        >
+                                            {issue.name}
+                                        </td>
+                                        <td
+                                            className={`border-t border-gray-200 px-4 py-2 ${
+                                                issue.status ? "line-through text-gray-500" : ""
+                                            }`}
+                                        >
+                                            {issue.rollNo}
+                                        </td>
+                                        <td className="border-t border-gray-200 px-4 py-2">
+                                            {issue.status ? 'Resolved' : 'Unresolved'}
+                                        </td>
                                         <td className="border-t border-gray-200 px-4 py-2 text-center">
-                                            <input 
-                                                type="checkbox" 
-                                                checked={issue.status} 
-                                                onChange={() => handleStatusChange(issue.category, issue.id, issue.status)} 
+                                            <input
+                                                type="checkbox"
+                                                checked={issue.status}
+                                                disabled={issue.status} // Disable checkbox if already resolved
+                                                onChange={() =>
+                                                    handleStatusChange(issue.category, issue.id, issue.status)
+                                                }
                                             />
                                         </td>
                                     </tr>
