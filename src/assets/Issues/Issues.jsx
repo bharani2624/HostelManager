@@ -12,12 +12,11 @@ const Issues = ({ isOpen }) => {
             const formattedData = [];
 
             if (data) {
-                // Collect issues from each category in the 'Issues' node
                 Object.keys(data).forEach(category => {
                     Object.keys(data[category]).forEach(issueKey => {
                         formattedData.push({
                             ...data[category][issueKey],
-                            category, // Add category to identify the type of issue
+                            category, 
                             id: issueKey
                         });
                     });
@@ -37,7 +36,6 @@ const Issues = ({ isOpen }) => {
         })
             .then(() => {
                 console.log("Issue marked as resolved successfully.");
-                // Schedule deletion after 2000 seconds
                 setTimeout(() => {
                     remove(issueRef)
                         .then(() => {
@@ -46,7 +44,7 @@ const Issues = ({ isOpen }) => {
                         .catch((error) => {
                             console.error("Error deleting issue:", error);
                         });
-                }, 2000 * 1000); // 2000 seconds
+                }, 2000 * 1000); 
             })
             .catch((error) => {
                 console.error("Error updating status:", error);
@@ -102,7 +100,7 @@ const Issues = ({ isOpen }) => {
                                             <input
                                                 type="checkbox"
                                                 checked={issue.status}
-                                                disabled={issue.status} // Disable checkbox if already resolved
+                                                disabled={issue.status}
                                                 onChange={() =>
                                                     handleStatusChange(issue.category, issue.id, issue.status)
                                                 }
