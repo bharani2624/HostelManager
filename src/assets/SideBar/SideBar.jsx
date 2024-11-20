@@ -21,6 +21,9 @@ const SideBar = ({ isOpen, toggle }) => {
     const onSp3 = () => {
         history('/Coral');
     }
+    const onSp4 = () => {
+        history('/Issues');
+    }
     return (
         <div className="container bg">
             <div
@@ -43,6 +46,9 @@ const SideBar = ({ isOpen, toggle }) => {
                     </li>
                     <li>
                         <a onClick={onSp2} className="hover:bg-slate-100 p-2 rounded block shadow rounded">Diamond</a>
+                    </li>
+                    <li>
+                        <a onClick={onSp4} className="hover:bg-slate-100 p-2 rounded block shadow rounded">Issues</a>
                     </li>
                 </ul>
             </div>
